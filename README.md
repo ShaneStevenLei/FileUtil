@@ -35,8 +35,8 @@ fileUtil.getMd5(file).done(function(data) {
 ```
 * Getting the file md5 in the progress
 ```
-fileUtil.getMd5(file).progress(function(){
-    console.log('Getting the file md5 in the progress.');
+fileUtil.getMd5(file).progress(function(progress){
+    console.log('Getting the file md5 in the progress(' + progress + '%).');
 });
 ```
 * Get the file md5 unsuccessfully

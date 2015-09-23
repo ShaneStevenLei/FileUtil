@@ -10,12 +10,12 @@
  *          }
  *      3. Get file md5:
  *          // Get the file md5 successfully
- *          fileUtil.get(file).done(function(md5){
- *              console.log('Get the file md5 successfully: ' + md5);
+ *          fileUtil.get(file).done(function(data){
+ *              console.log('Get the file md5 successfully: ' + data);
  *          });
  *          // Getting the file md5 in the progress
- *          fileUtil.getMd5(file.file).progress(function(){
- *              console.log('Getting the file md5.');
+ *          fileUtil.getMd5(file.file).progress(function(progress){
+ *              console.log('Getting the file md5 in the progress (' + progress + '%).');
  *          });
  *          // Get the file md5 unsuccessfully
  *          fileUtil.getMd5(file.file).fail(function(){
@@ -42,7 +42,7 @@ FileUtil.prototype = {
             fileReader = new FileReader(),
             defer = $.Deferred();
         fileReader.onload = function(e) {
-            defer.notify('read chunk # ' + (currentChunk + 1) + ' of ' + chunks);
+            defer.notify(Math.floor(script_r.progress() * 100));
             spark.append(e.target.result); // Append array buffer
             currentChunk++;
             if (currentChunk < chunks) {
