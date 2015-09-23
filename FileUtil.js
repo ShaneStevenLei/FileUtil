@@ -42,7 +42,7 @@ FileUtil.prototype = {
             fileReader = new FileReader(),
             defer = $.Deferred();
         fileReader.onload = function(e) {
-            defer.notify(Math.floor(script_r.progress() * 100));
+            defer.notify(Math.floor((currentChunk + 1) / chunks * 100));
             spark.append(e.target.result); // Append array buffer
             currentChunk++;
             if (currentChunk < chunks) {
